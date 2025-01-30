@@ -11,7 +11,7 @@ export const sendToken = async (user, statusCode, res, message) => {
 
  try{
     res.cookie("token", token, options);
-    console.log("cookies is being set");
+    console.log("cookies is being set", res.cookies);
  }
   catch{
     console.log("cant set cookies. you're fucked up");
