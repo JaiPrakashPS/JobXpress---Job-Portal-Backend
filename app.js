@@ -14,7 +14,7 @@ console.log("Allowed Frontend URL:", process.env.FRONTEND_URL);
 
 app.use(
   cors({
-    origin: "*", 
+    origin: "job-xpress-job-portal-frontend.vercel.app", 
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true
