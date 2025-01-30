@@ -1,16 +1,16 @@
 export const sendToken = (user, statusCode, res, message) => {
+  const token = user.getJWTToken();  // Assuming this generates the JWT token
 
-  const token = user.getJWTToken();
-
+  // Set the expiration directly to 24 hours (in milliseconds)
   const options = {
-    expires: new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000), 
+    expires: new Date(Date.now() + 86400000), // 86400000 ms = 24 hours
     httpOnly: true, // Make sure the cookie is accessible only via HTTP requests for security
   };
-  console.log(options);
-  
+
+  console.log(options);  // This will help you verify the expiration time
 
   res.status(statusCode)
-    .cookie("token", token, options) 
+    .cookie("token", token, options)  // Set the cookie with the token
     .json({
       success: true,
       user,
