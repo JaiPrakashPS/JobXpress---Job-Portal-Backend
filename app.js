@@ -12,20 +12,33 @@ const app = express();
 config({ path: "./config/config.env" });
 console.log("Allowed Frontend URL:", process.env.FRONTEND_URL);
 
+const allowedOrigins = [
+  "https://job-xpress-job-portal-frontend.vercel.app",
+  "https://job-xpress-job-portal-frontend-etor6okso.vercel.app"
+];
+
 app.use(
   cors({
-    origin: "job-xpress-job-portal-frontend.vercel.app", 
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true
   })
 );
 
-app.options('*', cors())
+// Handle Preflight Requests
+app.options("*", cors());
+
+// Middleware
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(
   fileUpload({
     useTempFiles: true,
