@@ -10,13 +10,17 @@ import fileUpload from "express-fileupload";
 import { errorMiddleware } from "./middleware/error.js";
 const app = express();
 config({ path: "./config/config.env" });
+console.log("Allowed Frontend URL:", process.env.FRONTEND_URL);
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: process.env.FRONTEND_URL, // Use a single string instead of an array
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
     credentials: true
   })
 );
+
 app.options('*', cors())
 app.use(cookieParser());
 app.use(express.json());
