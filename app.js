@@ -14,16 +14,12 @@ console.log("Allowed Frontend URL:", process.env.FRONTEND_URL);
 
 app.use(
   cors({
-    origin: [
-      "https://job-xpress-job-portal-frontend.vercel.app",
-      "https://job-xpress-job-portal-frontend-etor6okso.vercel.app"
-    ],
-    methods: "GET, POST, PUT, DELETE",
-    allowedHeaders: "Content-Type, Authorization",
+    origin: "job-xpress-job-portal-frontend.vercel.app", 
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
     credentials: true
   })
 );
-
 
 app.options('*', cors())
 app.use(cookieParser());
