@@ -11,7 +11,7 @@ import { errorMiddleware } from "./middleware/error.js";
 const app = express();
 config({ path: "./config/config.env" });
 
-app.use(cors());
+app.use(app.options('*', cors()));
 
 app.use(cookieParser());
 app.use(express.json());
