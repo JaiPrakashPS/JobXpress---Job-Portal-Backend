@@ -1,4 +1,4 @@
-export const sendToken = (user, statusCode, res, message) => {
+export const sendToken = async (user, statusCode, res, message) => {
   const token = user.getJWTToken();  // Assuming this generates the JWT token
 
   // Set the expiration directly to 24 hours (in milliseconds)
@@ -9,8 +9,14 @@ export const sendToken = (user, statusCode, res, message) => {
 
   console.log(options);  // This will help you verify the expiration time
 
-  res.status(statusCode)
-    .cookie("token", token, options)  // Set the cookie with the token
+ try{
+    res.cookie("token", token, options);
+    console.log("cookies is being set");
+ }
+  catch{
+    console.log("cant set cookies. you're fucked up");
+  }
+  res.status(statusCode)  // Set the cookie with the token
     .json({
       success: true,
       user,
