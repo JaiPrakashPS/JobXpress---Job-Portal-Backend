@@ -14,7 +14,7 @@ console.log("Allowed Frontend URL:", process.env.FRONTEND_URL);
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL, // Use a single string instead of an array
+    origin: "*", 
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true
