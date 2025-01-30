@@ -39,7 +39,6 @@ app.use(
 app.options('*', cors());
 
 app.use(cookieParser());
-app.use(cookies()); //trying
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

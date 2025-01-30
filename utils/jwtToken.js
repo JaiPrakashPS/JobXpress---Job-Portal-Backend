@@ -10,7 +10,7 @@ export const sendToken = async (user, statusCode, res, message) => {
   console.log(options);  // This will help you verify the expiration time
 
  try{
-    res.cookie("token", token, options);
+    await res.cookie("token", token, options);
     console.log("cookies is being set", res.cookies);
  }
   catch{
