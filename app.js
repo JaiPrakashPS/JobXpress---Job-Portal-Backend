@@ -19,6 +19,7 @@ const allowedOrigins = [
   "https://job-xpress-job-portal-frontend-etor6okso.vercel.app"
 ];
 
+
 // CORS configuration
 app.use(
   cors({
